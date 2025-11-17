@@ -185,13 +185,15 @@ def main():
     az_max = matrix[i_max,j_max][1][0]
     t_max = matrix[i_max,j_max][3][0]
 
+    # the theoretical coordinates of the sun, when maximum signal strength was found
     alt_az_max = np.array([alt_max,az_max])
+
+    # the real coordinates of the sun at that same time, from the ephimerides
     alt_az_max_ephimeris = getSunCoordsEphimeris(t_max)
 
     corrections = alt_az_max_ephimeris - alt_az_max
 
     print(f"corrections={corrections}")
-    print(f"corrections={corrections} \n")
 
     print("-----------------END OF LOG-----------------\n")
     # will be 1 x 2 matrix
@@ -202,4 +204,5 @@ def main():
     input("type sth to exit")
 
 if __name__ == "__main__":
+
     main()
