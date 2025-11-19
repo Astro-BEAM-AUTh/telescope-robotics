@@ -1,0 +1,9 @@
+name: 📆 Weekly Check-in
+on:
+  schedule:
+    - cron: "0 0 * * 0"  # Runs every Sunday at midnight
+
+jobs:
+  check-stale-issues:
+    uses: Astro-BEAM-AUTh/infrastructure/.github/workflows/stale.yml@main
+    
