@@ -12,9 +12,9 @@ from mpl_interactions import ioff, panhandler, zoom_factory
 import matplotlib.pyplot as plt
 import time
 
-fpath = "C:\\Users\\nikos\\Desktop\\scan_log.txt"
+fpath = "FILE_PATH\\scan_log.txt"
 
-fpath2 = "C:\\Users\\nikos\\Desktop\\scan_matrix.txt"
+fpath2 = "FILE_PATH\\scan_matrix.txt"
 
 # !!! constant coordinate format (alt,az) with np arrays !!!
 
@@ -144,8 +144,10 @@ def main():
             if i==0 and j==0:
                 d_coords_total = np.array([0.0,0.0])
             elif j==0 and i != 0:
+                current_sun_coords = getSunCoordsEphimeris(Time(datetime.now(timezone.utc)))
                 d_coords_total = current_sun_coords - prev_sun_alt_az
             else:
+                current_sun_coords = getSunCoordsEphimeris(Time(datetime.now(timezone.utc)))
 
                 #d_alt_az_movement = current_sun_coords - prev_sun_alt_az
 
@@ -311,6 +313,30 @@ def main():
 
     fig.canvas.mpl_connect('button_press_event', on_click_anywhere)
 
+    plt.show()
+
+    # Assume data is shape (M, N) and each element is a 1D array of length 4
+    M, N = matrix.shape
+
+    x = np.zeros(M * N)
+    y = np.zeros(M * N)
+    z = np.zeros(M * N)
+    t = np.empty(M * N, dtype=object)   # Time objects
+
+    k = 0
+    for i in range(M):
+        for j in range(N):
+            element = matrix[i, j]   # shape (4,)
+            x[k] = element[0]
+            y[k] = element[1]
+            z[k] = element[2]
+            t[k] = element[3]      # Time object
+            k += 1
+    plt.scatter(x, y, c=z)
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.title("Scatter plot with z as color dimension")
+    plt.colorbar(label="z")
     plt.show()
 
     #print(X_DATA[0:10])
