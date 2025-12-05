@@ -9,7 +9,7 @@ from astropy.coordinates import get_body_barycentric, get_body
 
 import turtle
 
-fpath = "C:\\Users\\nikos\\Desktop\\scan_log.txt"
+fpath = "FILE_PATH\\scan_log.txt"
 
 # !!! constant coordinate format (alt,az) with np arrays !!!
 
@@ -224,4 +224,5 @@ def main():
     input("type sth to exit")
 
 if __name__ == "__main__":
+
     main()
