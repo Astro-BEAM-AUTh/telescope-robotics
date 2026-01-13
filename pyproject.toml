@@ -1,6 +1,6 @@
 [project]
 name = "robotics"
-version = "0.0.0"
+version = "0.0.1"
 description = "Telescope movement and low-level operations."
 readme = "README.md"
 authors = [
