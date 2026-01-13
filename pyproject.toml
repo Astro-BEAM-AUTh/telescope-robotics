@@ -18,8 +18,8 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
-    "python-semantic-release>=10.5.2",
-    "tox>=4.32.0",
+    "python-semantic-release==10.5.3",
+    "tox==4.34.1",
 ]
 
 [tool.semantic_release]
@@ -74,7 +74,7 @@ env_list = ["lint"] # Add more environments when needed
 [tool.tox.envs.lint]
 description = "Lint the codebase with ruff"
 deps = [
-    "ruff>=0.12.3",
+    "ruff==0.14.11",
 ]
 skip_install = true
 commands = [[ "ruff", "check", "src/", "tests/" ]]
