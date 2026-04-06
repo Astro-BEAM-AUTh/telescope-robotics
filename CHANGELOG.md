@@ -2,6 +2,14 @@
 
 <!-- insertion marker -->
 
+## v0.1.0 (2026-04-06)
+
+### Features
+
+- Add NEMA23 GUI testing utility
+  ([`0275619`](https://github.com/Astro-BEAM-AUTh/telescope-robotics/commit/0275619c4387db8663ed7bc2fe2ef27845f2a2d5))
+
+
 ## v0.0.1 (2026-01-13)
 
 ### Continuous Integration
