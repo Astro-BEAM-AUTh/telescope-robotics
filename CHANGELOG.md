@@ -2,6 +2,14 @@
 
 <!-- insertion marker -->
 
+## v0.2.0 (2026-04-28)
+
+### Features
+
+- Add motor control with jogging utility.
+  ([`8c788c9`](https://github.com/Astro-BEAM-AUTh/telescope-robotics/commit/8c788c967446321d478e920075120ecaa33a1842))
+
+
 ## v0.1.0 (2026-04-06)
 
 ### Features
