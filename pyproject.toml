@@ -19,7 +19,7 @@ build-backend = "uv_build"
 [dependency-groups]
 dev = [
     "python-semantic-release==10.5.3",
-    "tox==4.53.0",
+    "tox==4.53.1",
 ]
 
 [tool.semantic_release]
