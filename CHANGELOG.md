@@ -2,6 +2,14 @@
 
 <!-- insertion marker -->
 
+## v0.3.0 (2026-09-29)
+
+### Continuous Integration
+
+- **fix**: Correct job permissions to release new versions
+  ([`d8a8802`](https://github.com/Astro-BEAM-AUTh/telescope-robotics/commit/d8a8802df58add3676cf11d7987a7add34a7c7b5))
+
+
 ## v0.2.0 (2026-04-28)
 
 ### Features
