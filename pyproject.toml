@@ -7,7 +7,12 @@ authors = [
     { name = "Hercules Konsoulas", email = "dyka3773@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "asyncpg>=0.31.0",
+    "inject>=5.5.0",
+    "pydantic-settings>=2.15.0",
+    "sqlmodel>=0.0.47",
+]
 
 [project.scripts]
 robotics = "robotics.main:main"
