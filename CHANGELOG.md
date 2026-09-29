@@ -2,6 +2,22 @@
 
 <!-- insertion marker -->
 
+## v0.4.0 (2026-09-29)
+
+### Continuous Integration
+
+- **docker**: Add Dockerfile to be able to release docker images on ghcr.io
+  ([`1ce87f9`](https://github.com/Astro-BEAM-AUTh/telescope-robotics/commit/1ce87f9d151c15c4c48efa44e59ffa5b5a843bb3))
+
+### Features
+
+- Add scaffolding project files pt.1
+  ([`0f64eae`](https://github.com/Astro-BEAM-AUTh/telescope-robotics/commit/0f64eaee6d41d29f7292b844a93e49da584975a5))
+
+- Add scaffolding project files pt.2
+  ([`7a6686a`](https://github.com/Astro-BEAM-AUTh/telescope-robotics/commit/7a6686a1452ebfcdc4cde37ae8d8bc14e7b028f7))
+
+
 ## v0.3.0 (2026-09-29)
 
 ### Continuous Integration
