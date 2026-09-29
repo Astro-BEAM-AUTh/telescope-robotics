@@ -1,4 +1,5 @@
-from collections.abc import AsyncGenerator
+import functools
+from collections.abc import AsyncGenerator, Awaitable, Callable
 from contextlib import asynccontextmanager
 
 from sqlalchemy.ext.asyncio import AsyncEngine, async_sessionmaker, create_async_engine
@@ -73,11 +74,26 @@ async def get_db() -> AsyncGenerator[AsyncSession]:
 
     Yields:
         AsyncSession: Database session
-
-    Usage:
-        @router.get("/")
-        async def route(db: AsyncSession = Depends(get_db)):
-            result = await db.execute(query)
     """
     async with _get_db_session() as session:
         yield session
+
+
+def inject_db_session[**P, T](func: Callable[P, Awaitable[T]]) -> Callable[P, Awaitable[T]]:
+    """
+    Decorate an async function so it receives a ``session`` keyword argument automatically.
+
+    A new session (and its own commit/rollback transaction) is opened only when the caller
+    hasn't already supplied one, so nested calls can share a single transaction by passing
+    their own ``session`` through explicitly.
+    """
+
+    @functools.wraps(func)
+    async def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
+        if "session" in kwargs:
+            return await func(*args, **kwargs)
+
+        async with _get_db_session() as session:
+            return await func(*args, session=session, **kwargs)
+
+    return wrapper

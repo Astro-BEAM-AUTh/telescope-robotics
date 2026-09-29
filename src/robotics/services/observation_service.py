@@ -1,10 +1,9 @@
 import logging
 
-import inject
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from robotics.database import get_db
+from robotics.database import inject_db_session
 from robotics.models.enums.observation_status import ObservationStatusEnum
 from robotics.models.observation import Observation
 from robotics.utils.time_utils import utc_now
@@ -12,7 +11,7 @@ from robotics.utils.time_utils import utc_now
 logger = logging.getLogger("astro_robotics")
 
 
-@inject.params(session=get_db)
+@inject_db_session
 async def claim_next_pending_observation(session: AsyncSession) -> Observation | None:
     """Fetch the earliest pending observation for processing if any."""
     result = await session.exec(
@@ -21,16 +20,19 @@ async def claim_next_pending_observation(session: AsyncSession) -> Observation |
     observation = result.first()
 
     if observation is None:
+        logger.info("No pending observations found")
         return None
 
-    await mark_observation(observation, ObservationStatusEnum.IN_PROGRESS, session)
+    logger.info(f"Found pending observation {observation.id}")
+
+    await mark_observation(observation, ObservationStatusEnum.IN_PROGRESS)
 
     logger.info(f"Claimed observation {observation.id} for processing")
 
     return observation
 
 
-@inject.params(session=get_db)
+@inject_db_session
 async def mark_observation(observation: Observation, status: ObservationStatusEnum, session: AsyncSession) -> None:
     """
     Mark an observation with the given status.
@@ -41,6 +43,12 @@ async def mark_observation(observation: Observation, status: ObservationStatusEn
         session (AsyncSession): The database session to use for the update.
     """
     observation.status = status
-    observation.updated_on = utc_now()
+    now = utc_now()
+    observation.updated_on = now
+
+    if status == ObservationStatusEnum.COMPLETED:
+        observation.completed_on = now
+
     logger.info(f"Marked observation {observation.id} as {status.name}")
+    observation = await session.merge(observation)
     await session.flush([observation])

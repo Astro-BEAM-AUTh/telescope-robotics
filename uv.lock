@@ -255,15 +255,6 @@ wheels = [
 ]
 
 [[package]]
-name = "inject"
-version = "5.5.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e0/5e/6509b51fb6558c9fd06c0ccb8ae244401d412a222bb07ca00c7cebaa1d46/inject-5.5.0.tar.gz", hash = "sha256:7ded3d40ec4caf3462302e5ea463fce5ab817c6d466eaadfa6ec699904c51cfc", size = 70514, upload-time = "2026-07-13T08:01:36.045Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/2b/f2/b8f8241ff1adb0a3738904afd56330c439701f19919148e76ca86d3d42ec/inject-5.5.0-py3-none-any.whl", hash = "sha256:ceaa6a2b6808bdd49736b4fcceed8b49f2a0967c1486ce4323b6ef41819241e9", size = 15406, upload-time = "2026-07-13T08:01:34.726Z" },
-]
-
-[[package]]
 name = "jinja2"
 version = "3.1.6"
 source = { registry = "https://pypi.org/simple" }
@@ -582,7 +573,6 @@ version = "0.3.0"
 source = { editable = "." }
 dependencies = [
     { name = "asyncpg" },
-    { name = "inject" },
     { name = "pydantic-settings" },
     { name = "sqlmodel" },
 ]
@@ -596,7 +586,6 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "asyncpg", specifier = ">=0.31.0" },
-    { name = "inject", specifier = ">=5.5.0" },
     { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "sqlmodel", specifier = ">=0.0.47" },
 ]
