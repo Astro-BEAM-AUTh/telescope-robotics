@@ -17,13 +17,13 @@ dependencies = [
 robotics = "robotics.main:main"
 
 [build-system]
-requires = ["uv_build>=0.13.6,<0.14.0"]
+requires = ["uv_build>=0.13.7,<0.14.0"]
 build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
     "python-semantic-release==10.7.0",
-    "tox==4.67.4",
+    "tox==4.67.13",
 ]
 
 [tool.semantic_release]
